@@ -22,7 +22,9 @@ toRevDigits x = if x > 0
 
 -- Double every second number in a list starting on the left.
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther = undefined
+doubleEveryOther [] = []
+doubleEveryOther (first:[]) = [first]
+doubleEveryOther (first:(second:remaining)) = first:second * 2:doubleEveryOther(remaining)
 
 -- Exercise 4 -----------------------------------------
 
