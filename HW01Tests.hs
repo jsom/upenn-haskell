@@ -21,6 +21,9 @@ testToRevDigits (n, d) = toRevDigits n == d
 testDoubleEveryOther :: ([Integer], [Integer]) -> Bool
 testDoubleEveryOther (n, d) = doubleEveryOther n == d
 
+testSumDigits :: ([Integer], Integer) -> Bool
+testSumDigits (n, d) = sumDigits n == d
+
 ex1Tests :: [Test]
 ex1Tests = [ Test "lastDigit test" testLastDigit
              [(123, 3), (1234, 4), (5, 5), (10, 0), (0, 0)]
@@ -48,7 +51,11 @@ ex3Tests = [ Test "doubleEveryOther test" testDoubleEveryOther
 -- Exercise 4 -----------------------------------------
 
 ex4Tests :: [Test]
-ex4Tests = []
+ex4Tests = [ Test "sumDigits test" testSumDigits
+             [
+               ([10, 5, 18, 4], 19)
+             ]
+           ]
 
 -- Exercise 5 -----------------------------------------
 

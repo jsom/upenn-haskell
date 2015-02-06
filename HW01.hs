@@ -30,8 +30,9 @@ doubleEveryOther (first:(second:remaining)) = first:second * 2:doubleEveryOther(
 
 -- Calculate the sum of all the digits in every Integer.
 sumDigits :: [Integer] -> Integer
-sumDigits = undefined
-
+sumDigits [] = 0
+sumDigits ([x]) = x
+sumDigits (x:xs) = sumDigits (toRevDigits x) + sumDigits xs
 
 -- Exercise 5 -----------------------------------------
 
