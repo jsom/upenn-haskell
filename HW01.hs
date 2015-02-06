@@ -14,7 +14,9 @@ dropLastDigit x = truncate (fromIntegral x / 10 :: Float)
 -- Exercise 2 -----------------------------------------
 
 toRevDigits :: Integer -> [Integer]
-toRevDigits = undefined
+toRevDigits x = if x > 0
+                then lastDigit x:toRevDigits(dropLastDigit(x))
+                else []
 
 -- Exercise 3 -----------------------------------------
 
