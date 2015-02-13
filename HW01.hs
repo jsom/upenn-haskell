@@ -9,7 +9,7 @@ lastDigit x = mod x 10
 
 -- Drop the last digit from a number
 dropLastDigit :: Integer -> Integer
-dropLastDigit x = truncate (fromIntegral x / 10 :: Float)
+dropLastDigit x = div x 10
 
 -- Exercise 2 -----------------------------------------
 
@@ -31,14 +31,17 @@ doubleEveryOther (first:(second:remaining)) = first:second * 2:doubleEveryOther(
 -- Calculate the sum of all the digits in every Integer.
 sumDigits :: [Integer] -> Integer
 sumDigits [] = 0
-sumDigits ([x]) = x
+sumDigits ([x]) = sum . toRevDigits $ x
 sumDigits (x:xs) = sumDigits (toRevDigits x) + sumDigits xs
 
 -- Exercise 5 -----------------------------------------
 
 -- Validate a credit card number using the above functions.
 luhn :: Integer -> Bool
-luhn = undefined
+luhn x = mod (luhnNumber x) 10 == 0
+
+luhnNumber :: Integer -> Integer
+luhnNumber x = (sumDigits . doubleEveryOther . toRevDigits) x
 
 -- Exercise 6 -----------------------------------------
 
