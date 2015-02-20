@@ -30,18 +30,13 @@ doubleEveryOther (first:(second:remaining)) = first:second * 2:doubleEveryOther(
 
 -- Calculate the sum of all the digits in every Integer.
 sumDigits :: [Integer] -> Integer
-sumDigits [] = 0
-sumDigits ([x]) = sum . toRevDigits $ x
-sumDigits (x:xs) = sumDigits (toRevDigits x) + sumDigits xs
+sumDigits x = sum . concat $ map toRevDigits x
 
 -- Exercise 5 -----------------------------------------
 
 -- Validate a credit card number using the above functions.
 luhn :: Integer -> Bool
-luhn x = mod (luhnNumber x) 10 == 0
-
-luhnNumber :: Integer -> Integer
-luhnNumber x = (sumDigits . doubleEveryOther . toRevDigits) x
+luhn x = (lastDigit . sumDigits . doubleEveryOther . toRevDigits) x == 0
 
 -- Exercise 6 -----------------------------------------
 
